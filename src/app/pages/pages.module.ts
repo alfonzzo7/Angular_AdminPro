@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 
@@ -13,6 +14,8 @@ import { ComponentsModule } from '../components/components.module';
 
 import { SharedModule } from '../shared/shared.modules';
 import { PAGES_ROUTES } from './pages.routes';
+import { PipesModule } from '../pipes/pipes.module';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
     declarations: [
@@ -22,7 +25,8 @@ import { PAGES_ROUTES } from './pages.routes';
         Graficas1Component,
         AcountSettingsComponent,
         PromesasComponent,
-        RxjsComponent
+        RxjsComponent,
+        ProfileComponent
     ],
     exports: [
         PagesComponent,
@@ -31,10 +35,12 @@ import { PAGES_ROUTES } from './pages.routes';
         Graficas1Component
     ],
     imports: [
+        CommonModule,
         FormsModule,
         SharedModule,
         PAGES_ROUTES,
-        ComponentsModule
+        ComponentsModule,
+        PipesModule
     ]
 })
 export class PagesModule { }
