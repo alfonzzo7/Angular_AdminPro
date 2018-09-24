@@ -16,6 +16,8 @@ import { SharedModule } from '../shared/shared.modules';
 import { PAGES_ROUTES } from './pages.routes';
 import { PipesModule } from '../pipes/pipes.module';
 import { ProfileComponent } from './profile/profile.component';
+import { UsuariosComponent } from './usuarios/usuarios.component';
+import { ModalUploadComponent } from '../components/modal-upload/modal-upload.component';
 
 @NgModule({
     declarations: [
@@ -26,7 +28,9 @@ import { ProfileComponent } from './profile/profile.component';
         AcountSettingsComponent,
         PromesasComponent,
         RxjsComponent,
-        ProfileComponent
+        ProfileComponent,
+        UsuariosComponent,
+        ModalUploadComponent
     ],
     exports: [
         PagesComponent,

@@ -57,8 +57,10 @@ export class UsuarioService {
     let url = `${URL_SERVICIOS}/usuario/${usuario._id}?token=${this.token}`;
 
     return this.http.put(url, usuario).map((resp: any) => {
+      if (usuario._id === this.usuario._id) {
+        this.guardarUsuario(resp.id, this.token, resp.usuario);
+      }
       swal('¡Usuario actualizado!', usuario.email, 'success');
-      this.guardarUsuario(resp.id, this.token, resp.usuario);
       return resp.usuario;
     });
   }
@@ -94,6 +96,7 @@ export class UsuarioService {
     let url = URL_SERVICIOS + '/login/google';
 
     return this.http.post(url, {token: token}).map((resp: any) => {
+      // console.log(resp);
       this.guardarUsuario(resp.id, resp.token, resp.usuario);
       return true;
     });
@@ -109,5 +112,27 @@ export class UsuarioService {
 
     this.router.navigate(['/login']);
     swal('¡Logout realizado con exito!', '', 'success');
+  }
+
+  cargarUsuarios(desde: number = 0) {
+    let url = `${URL_SERVICIOS}/usuario?desde=${desde}`;
+
+    return this.http.get(url);
+  }
+
+  buscarUsuarios(termino: string, desde: number = 0) {
+    let url = `${URL_SERVICIOS}/busqueda/coleccion/usuarios/${termino}?desde=${desde}`;
+
+    return this.http.get(url);
+  }
+
+  borrarUsuario(id: string) {
+    let url = `${URL_SERVICIOS}/usuario/${id}?token=${this.token}`;
+
+    return this.http.delete(url)
+              .map(resp => {
+                swal('Usuario borrado', '', 'success');
+                return true;
+              });
   }
 }
