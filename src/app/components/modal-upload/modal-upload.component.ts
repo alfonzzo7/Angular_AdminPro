@@ -10,6 +10,7 @@ export class ModalUploadComponent implements OnInit {
 
   imagenSubir: File;
   imagenTemp: string;
+  archivo: any;
 
   constructor(
     public _subirArchivoService: SubirArchivoService,
@@ -53,6 +54,7 @@ export class ModalUploadComponent implements OnInit {
   cerrarModal() {
     this.imagenTemp = null;
     this.imagenSubir = null;
+    this.archivo = null;
     this._modalUploadService.ocultarModal();
   }
 }

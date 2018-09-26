@@ -15,6 +15,10 @@
     width: 70px;
 }
 
+.w10 {
+    width: 10%;
+}
+
 .fondo-negro {
     background-color: rgba(0, 0, 0, 0.4);
     position: fixed;

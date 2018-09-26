@@ -53,7 +53,7 @@ export class UsuariosComponent implements OnInit {
     });
   }
 
-  paginar(siguiente) {
+  paginar(siguiente: number) {
     let desde = this.desde + siguiente;
 
     if (desde >= this.total) {
@@ -85,7 +85,6 @@ export class UsuariosComponent implements OnInit {
 
     this._usuarioService.buscarUsuarios(termino, this.desde)
               .subscribe((resp: any) => {
-                console.log(resp);
                 this.total = resp.total;
                 this.usuarios = resp.usuarios;
                 this.cargando = false;
@@ -102,20 +101,39 @@ export class UsuariosComponent implements OnInit {
       title: '¿Esta seguro?',
       text: `Esta a punto de borrar a ${usuario.nombre}`,
       icon: 'warning',
-      buttons: true,
+      buttons: {
+        cancel: {
+          text: 'Cancelar',
+          value: false,
+          visible: true,
+          className: '',
+          closeModal: true,
+        },
+        confirm: {
+          text: 'Continuar',
+          value: true,
+          visible: true,
+          className: '',
+          closeModal: true
+        }
+      },
       dangerMode: true,
     })
     .then((willDelete) => {
       if (willDelete) {
         this._usuarioService.borrarUsuario(usuario._id)
                   .subscribe(resp => {
-                    this.cargarUsuarios();
+                    if (this.termino.length <= 0) {
+                      this.cargarUsuarios();
+                    } else {
+                      this.buscarUsuario(this.termino);
+                    }
                   });
       }
     });
   }
 
-  actualziarUsuario(usuario: Usuario) {
+  actualizarUsuario(usuario: Usuario) {
     this._usuarioService.actualizarUsuario(usuario).subscribe();
   }
 }

@@ -33,9 +33,8 @@ export class ImagenPipe implements PipeTransform {
       default:
         console.log('Tipo de imagen no es valida, los tipos aceptados son (usuario, medico, hospital)');
         url += '/usuarios/xxx';
-
-
     }
+
     return url;
   }
 
