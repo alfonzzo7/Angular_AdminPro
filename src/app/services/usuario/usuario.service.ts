@@ -24,6 +24,23 @@ export class UsuarioService {
     this.cargarStorare();
   }
 
+  renuevaToken() {
+    let url = `${URL_SERVICIOS}/login/renuevaToken?token=${this.token}`;
+
+    return this.http.get(url)
+                  .map((resp: any) => {
+                    this.token = resp.token;
+                    localStorage.setItem('token', this.token);
+                    console.log('Renueva Token');
+                    return true;
+                  })
+                  .catch(err => {
+                    swal('¡Error!', 'No ha sido posible renovar token', 'error');
+                    this.logout();
+                    return Observable.throw(err);
+                  });
+  }
+
   cargarStorare() {
     if (localStorage.getItem('token')) {
       this.token = localStorage.getItem('token');
@@ -135,7 +152,7 @@ export class UsuarioService {
     localStorage.removeItem('menu');
 
     this.router.navigate(['/login']);
-    swal('¡Logout realizado con exito!', '', 'success');
+    // swal('¡Logout realizado con exito!', '', 'success');
   }
 
   cargarUsuarios(desde: number = 0) {

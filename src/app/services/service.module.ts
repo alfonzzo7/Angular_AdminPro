@@ -12,7 +12,8 @@ import {
   SubirArchivoService,
   ModalUploadService,
   HospitalService,
-  MedicoService} from './service.index';
+  MedicoService,
+  VerificaTokenGuard} from './service.index';
 
 @NgModule({
   imports: [
@@ -22,6 +23,7 @@ import {
   providers: [
     LoginGuard,
     AdminGuard,
+    VerificaTokenGuard,
     SettingsService,
     SharedService,
     SidebarService,
