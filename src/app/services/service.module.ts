@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
 
 import {
+  LoginGuard,
+  AdminGuard,
   SettingsService,
   SharedService,
   SidebarService,
   UsuarioService,
-  LoginGuardGuard,
   SubirArchivoService,
   ModalUploadService,
   HospitalService,
@@ -19,11 +20,12 @@ import {
     HttpClientModule
   ],
   providers: [
+    LoginGuard,
+    AdminGuard,
     SettingsService,
     SharedService,
     SidebarService,
     UsuarioService,
-    LoginGuardGuard,
     SubirArchivoService,
     ModalUploadService,
     HospitalService,

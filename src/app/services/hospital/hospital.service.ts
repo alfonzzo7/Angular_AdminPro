@@ -15,7 +15,7 @@ export class HospitalService {
     public _usuarioService: UsuarioService
     ) { }
 
-  cargarHospitales(desde: number = 0, todos: boolean = false) {
+  cargarHospitales(desde: number = 0, todos: string = 'n') {
     let url = `${URL_SERVICIOS}/hospital?desde=${desde}&todos=${todos}`;
 
     return this.http.get(url);
